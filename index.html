@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdux</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <style>
+        @-webkit-keyframes kenburns-top {
+          0% {
+            -webkit-transform: scale(1) translateY(0);
+                    transform: scale(1) translateY(0);
+            -webkit-transform-origin: 50% 16%;
+                    transform-origin: 50% 16%;
+          }
+          100% {
+            -webkit-transform: scale(1.25) translateY(-15px);
+                    transform: scale(1.25) translateY(-15px);
+            -webkit-transform-origin: top;
+                    transform-origin: top;
+          }
+        }
+        @keyframes kenburns-top {
+          0% {
+            -webkit-transform: scale(1) translateY(0);
+                    transform: scale(1) translateY(0);
+            -webkit-transform-origin: 50% 16%;
+                    transform-origin: 50% 16%;
+          }
+          100% {
+            -webkit-transform: scale(1.25) translateY(-15px);
+                    transform: scale(1.25) translateY(-15px);
+            -webkit-transform-origin: top;
+                    transform-origin: top;
+          }
+        }
+
+        .kenburns-top {
+            -webkit-animation: kenburns-top 5s ease-in-out both;
+                    animation: kenburns-top 5s ease-in-out both;
+        } 
+
+        body {
+            background-color: #000000;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            animation: kenburns-top 5s ease-in-out both;
+            background-image: url('hhh.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .translucent-div {
+            background-color: rgba(255, 255, 255, 0.7); 
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            max-width: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .color{
+
+            color: rgb(46, 117, 89);
+        }
+        .session-time {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+        
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+
+    <div class="translucent-div">
+        <h1 style="color:slateblue;">Intro X</h1>
+        <p class="color">Welcome to my website.Explore and discover weather reports,calculator and so on in my website. Dive into my website and Enjoy!</p>
+
+        <button class="button" onclick="redirectToPage()">Explore</button>
+    </div>
+    <div class="session-time" id="sessionTime"></div>
+    <script>
+       function redirectToPage() {
+        window.location.href = 'follorme.html'; 
+       }
+
+
+       function updateSessionTime() {
+        const sessionTimeElement = document.getElementById('sessionTime');
+        let seconds = 0;
+
+        function update() {
+          seconds++;
+          const minutes = Math.floor(seconds / 60);
+          const remainingSeconds = seconds % 60;
+          sessionTimeElement.innerText = `Session Time: ${minutes}m ${remainingSeconds}s`;
+        }
+
+        setInterval(update, 1000);
+      }
+
+      updateSessionTime();
+
+    </script>
+</body>
+</html>

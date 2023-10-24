@@ -1,0 +1,141 @@
+body, h1, p, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://getwallpapers.com/wallpaper/full/e/5/5/1079033-amazing-cute-black-wallpapers-1920x1080-images.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-image: url('https://cdn.images.express.co.uk/img/dynamic/153/590x/1093730_1.jpg');
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 20px;
+    color: #71d5ec;
+    
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.city-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid #007BFF;
+    outline: none;
+    font-size: 16px;
+    transition: border-bottom-color 0.3s ease;
+}
+
+.city-input:focus {
+    border-bottom-color: #0056b3;
+}
+
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #71d5ec;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.search-button:hover {
+    background-color: transparent;
+    animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        background: linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF, #FF0000);
+        background-size: 400% 400%;
+        background-position: 0 100%;
+    }
+    100% {
+        background: linear-gradient(45deg, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #8B00FF, #FF0000);
+        background-size: 400% 400%;
+        background-position: 400% 0;
+    }
+}
+
+.weather-info {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #97c731;
+    font-size: 18px;
+    text-align: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.find-location-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FFD700;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px; /* Add a margin for spacing */
+}
+
+.find-location-button:hover {
+    background-color: #FFC800;
+}
+.search-button, .find-location-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.search-button:hover, .find-location-button:hover {
+    background-color: transparent;
+    animation: rainbow 2s linear infinite;
+}
+
+.back-to-home {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.back-to-home:hover {
+    background-color: #0056b3;
+}
+
+

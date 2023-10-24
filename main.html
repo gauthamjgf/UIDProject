@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Gautam's personal site</title>
+      <link rel="stylesheet" href="css/css.css">
+      <link rel="icon" href="hello.ico">
+      
+    </head>
+
+    <body>
+        <div class="top-container">
+            <img class="top-cloud" src="clouds.png" alt="cloud">
+            <div class="title-text">
+                <h1><em>I'm Gautam</em></h1>
+                <h2>a Cyber Security Student</h2>
+            </div>
+            <img class="bottom-cloud" src="clouds.png" alt="cloud">
+            <img class="mountain" src="mountain.png" alt="mountain">
+        </div>
+        
+
+        <div class="middle-container">
+            <div class="profile">
+                <img class="profilepic" src="profilepic.png" alt="gautam-profile-img">
+                <h2>Hello there</h2>
+                <p class="intro"><h4>I am a cyber security student at amrita vishwa vidyapeetam. <p>And this my webpage.</p></h4></p>
+            </div>
+            <hr>
+            <div class="skills">
+                <h2>My Skills</h2>
+                <div class="skill-row">
+                    <img class="code-img" src="https://media.giphy.com/media/IpeYSEZshTefe/giphy.gif" alt="code-img">
+                    <h3>Coding</h3>
+                    <p>Coding is my creative outlet, a language through which I bring ideas to life in the digital realm. The thrill of solving complex problems and the satisfaction of seeing a program run seamlessly are unparalleled. Whether it's crafting elegant algorithms or debugging intricate lines of code, I relish every moment spent immersed in the world of programming. </p>
+                </div>
+                <div class="skill-row">
+                   <img class="hack" src="https://media.giphy.com/media/077i6AULCXc0FKTj9s/giphy.gif" alt="hack-img">
+                   <h3>Web Devolopment</h3>
+                   <p>I have always been captivated by the dynamic world of web development. The ability to create interactive and visually appealing websites, and the power to turn ideas into functional digital experiences, has been a driving force in my journey. From crafting elegant user interfaces to delving into the intricacies of backend development, I find immense joy in every aspect of the process</p>
+                </div>
+            </div>
+            <hr>
+            <div class="contact-me">
+                <h2>Get In Touch</h2>
+                <h3>If you love coding as much as i do.</h3>
+                <p class="contact" Love coding and hacking as much as i do?lets have a chat about it and let us gain more knowledge. ></p>
+                <a href="mailto:yallagautam@gmail.com" class="buttonClass">contact me</a><br>
+                <a href="follorme.html" class="back-button">Back to Home Page</a>
+            </div>
+        </div>
+
+
+        <div class="bottom-container">
+          <a class="footer-link" href="https://www.instagram.com/yallagautham/">instagram</a>
+          <a class="footer-link" href="https://twitter.com/">Twitter</a>
+          <a class="footer-link" href="https://google.com/">Website</a>
+          <p>© 2023 Yallagautam.</p>
+        </div>
+        <div class="session-time" id="sessionTime"></div>
+
+    <script>
+        function updateSessionTime() {
+            const sessionTimeElement = document.getElementById('sessionTime');
+            let seconds = 0;
+
+            function update() {
+                seconds++;
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                sessionTimeElement.innerText = `Session Time: ${minutes}m ${remainingSeconds}s`;
+            }
+
+            setInterval(update, 1000);
+        }
+
+        updateSessionTime();
+    </script>
+    </body>
+
+</html>           

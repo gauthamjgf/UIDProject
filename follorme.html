@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cursor Moment</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    />
+    <style>
+      body,
+      html {
+        padding: 0;
+        margin: 0;
+        overscroll-behavior: none;
+        background-color: #000;
+        overflow: hidden;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        margin-left: 1em;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      a img.icon {
+        display: inline-block;
+        height: 1em;
+        margin: 0 0 -0.1em 0.3em;
+      }
+
+      #source-link {
+        top: 60px;
+      }
+
+      #source-link > i {
+        color: rgb(94, 106, 210);
+      }
+      .session-time {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+      .meta-link {
+        align-items: center;
+        backdrop-filter: blur(3px);
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        display: inline-flex;
+        gap: 5px;
+        left: 10px;
+        padding: 10px 20px;
+        position: fixed;
+        text-decoration: none;
+        transition: background-color 600ms, border-color 600ms;
+        z-index: 10000;
+      }
+
+      .meta-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .meta-link > i,
+      .meta-link > span {
+        height: 20px;
+        line-height: 20px;
+      }
+
+      .meta-link > span {
+        color: white;
+        font-family: "Rubik", sans-serif;
+        transition: color 600ms;
+      }
+
+      #content {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        color: white;
+      }
+
+      .myCard {
+        position: relative;
+        left: 40%;
+        top: 50%;
+        transform: translate(10%, 15%);
+      }
+
+      .myCard div{
+        margin-right: 10px;
+      }
+      #hello {
+        position: relative;
+        top: 65px;
+        left: 29%;
+        background-color: rgb(98, 153, 181);
+        border-color:  rgb(98, 153, 181);
+      }
+    </style>
+  </head>
+
+  <body>
+    <canvas> </canvas>
+
+    <div id="content" class="myCard">
+    <div class="card-container" style="display: flex;">
+        <div class="card" style="width: 18rem ;background-color: rgba(255, 255, 255, 0.5);">
+            <img src="https://static.wixstatic.com/media/97e7e5_2f3e79fdeb2d4e979d9bf210eee69fe2~mv2.jpeg/v1/fill/w_598,h_318,al_c/97e7e5_2f3e79fdeb2d4e979d9bf210eee69fe2~mv2.jpeg" class="card-img-top" alt="climate App" />
+            <div class="card-body">
+                <h5 class="card-title">Climate App</h5>
+                <p class="card-text">
+                  Stay informed with real-time weather updates, explore eco-friendly tips, and join a global community dedicated to a sustainable future. Let's take action together for a greener planet!
+                </p>
+                <a href="finalproject.html" class="btn btn-primary">Try Now</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;background-color: rgba(255, 255, 255, 0.5);">
+            <img src="https://i.insider.com/617acac246a50c0018d40900?width=1136&format=jpeg" style="height: 150px;" class="card-img-top" alt="Mortgage Calculator" />
+            <div class="card-body">
+                <h5 class="card-title">Mortgage Calculator</h5>
+                <p class="card-text">
+                  A Mortgage Calculator helps estimate monthly home loan payments based on factors like loan amount, interest rate, and term. It aids in budgeting for property purchases.
+                </p>
+                <br>
+                <a href="3rd.html" class="btn btn-primary">Try Now</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;background-color: rgba(255, 255, 255, 0.5);">
+            <img src="https://cdn.pixabay.com/photo/2022/10/09/09/54/google-maps-7508734_1280.png" style="height: 150px;" class="card-img-top" alt="Maps" />
+            <div class="card-body">
+                <h5 class="card-title">Track Your Location</h5>
+                <p class="card-text">
+                  Track your location with just a click of a button, you can see where you are on the map and even explore nearby areas.Zoom in to get a closer look at specific areas, or zoom out for a broader perspective.
+                </p>
+                <a href="maps.html" class="btn btn-primary">Try Now</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;background-color: rgba(255, 255, 255, 0.5);">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpk-EesHzHh5P9uu7Xq3osM3nEVJ64VNGf6Q&usqp=CAU" style="height: 150px;" class="card-img-top" alt="forms" />
+            <div class="card-body">
+                <h5 class="card-title">Forms</h5>
+                <p class="card-text">
+                  This form is designed to collect essential information to ensure a seamless registration process. Your participation will contribute to making this event a valuable experience for all attendees.
+                </p>
+                <br>
+                <a href="code.html" class="btn btn-primary">Register now</a>
+            </div>
+        </div>
+    </div>
+    <a href="index.html" class="btn btn-primary" id="hello">Go to Home Page</a>
+    <a href="main.html" class="btn btn-primary" id="hello">Check my Personal info</a>
+    </div>
+    <div class="session-time" id="sessionTime"></div>
+    <script>
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+
+      let mouseMoved = false;
+
+      const pointer = {
+        x: 0.5 * window.innerWidth,
+        y: 0.5 * window.innerHeight,
+      };
+      const params = {
+        pointsNumber: 40,
+        widthFactor: 0.3,
+        mouseThreshold: 0.6,
+        spring: 0.4,
+        friction: 0.5,
+      };
+
+      const trail = new Array(params.pointsNumber);
+      for (let i = 0; i < params.pointsNumber; i++) {
+        trail[i] = {
+          x: pointer.x,
+          y: pointer.y,
+          dx: 0,
+          dy: 0,
+        };
+      }
+
+      window.addEventListener("click", (e) => {
+        updateMousePosition(e.pageX, e.pageY);
+      });
+      window.addEventListener("mousemove", (e) => {
+        mouseMoved = true;
+        updateMousePosition(e.pageX, e.pageY);
+      });
+      window.addEventListener("touchmove", (e) => {
+        mouseMoved = true;
+        updateMousePosition(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+      });
+
+      function updateMousePosition(eX, eY) {
+        pointer.x = eX;
+        pointer.y = eY;
+      }
+
+      setupCanvas();
+      update(0);
+      window.addEventListener("resize", setupCanvas);
+
+      function update(t) {
+       
+        if (!mouseMoved) {
+          pointer.x =
+            (0.5 + 0.3 * Math.cos(0.002 * t) * Math.sin(0.005 * t)) *
+            window.innerWidth;
+          pointer.y =
+            (0.5 + 0.2 * Math.cos(0.005 * t) + 0.1 * Math.cos(0.01 * t)) *
+            window.innerHeight;
+        }
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        trail.forEach((p, pIdx) => {
+          const prev = pIdx === 0 ? pointer : trail[pIdx - 1];
+          const spring = pIdx === 0 ? 0.4 * params.spring : params.spring;
+          p.dx += (prev.x - p.x) * spring;
+          p.dy += (prev.y - p.y) * spring;
+          p.dx *= params.friction;
+          p.dy *= params.friction;
+          p.x += p.dx;
+          p.y += p.dy;
+        });
+
+        ctx.beginPath();
+        ctx.moveTo(trail[0].x, trail[0].y);
+
+        for (let i = 1; i < trail.length - 1; i++) {
+          const xc = 0.5 * (trail[i].x + trail[i + 1].x);
+          const yc = 0.5 * (trail[i].y + trail[i + 1].y);
+          ctx.quadraticCurveTo(trail[i].x, trail[i].y, xc, yc);
+          ctx.lineWidth = params.widthFactor * (params.pointsNumber - i);
+          ctx.stroke();
+        }
+        ctx.lineTo(trail[trail.length - 1].x, trail[trail.length - 1].y);
+        ctx.strokeStyle = "#00fffc";
+        window.requestAnimationFrame(update);
+      }
+
+      function setupCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+
+      function updateSessionTime() {
+        const sessionTimeElement = document.getElementById('sessionTime');
+        let seconds = 0;
+
+        function update() {
+          seconds++;
+          const minutes = Math.floor(seconds / 60);
+          const remainingSeconds = seconds % 60;
+          sessionTimeElement.innerText = `Session Time: ${minutes}m ${remainingSeconds}s`;
+        }
+
+        setInterval(update, 1000);
+      }
+
+      updateSessionTime();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

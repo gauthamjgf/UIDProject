@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Website</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="finalpro.css">
+    <style>
+        .session-time {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Weather details</h1>
+        <div class="input-container">
+            <input type="text" id="cityInput" class="city-input" placeholder="Enter city name">
+            <button id="searchButton" class="search-button">Search</button>
+            <button id="findLocationButton" class="find-location-button">Find My Location</button>
+        </div>
+        <div id="weatherInfo" class="weather-info"></div>
+        <button id="backToHome" class="back-to-home">Back to Home</button>
+    </div>
+    <div class="session-time" id="sessionTime"></div>
+    <script>
+        const apiKey = '3d9aebe1e55a6a68b50cdf57338d93ad'; 
+
+        const searchButton = document.getElementById('searchButton');
+        const cityInput = document.getElementById('cityInput');
+        const weatherInfo = document.getElementById('weatherInfo');
+        const findLocationButton = document.getElementById('findLocationButton');
+
+        searchButton.addEventListener('click', () => {
+            const cityName = cityInput.value;
+            if (cityName) {
+                fetchWeather(cityName);
+            }
+        });
+
+        findLocationButton.addEventListener('click', () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(getWeatherByLocation, handleLocationError);
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
+        });
+
+        cityInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                const cityName = cityInput.value;
+                if (cityName) {
+                    fetchWeather(cityName);
+                }
+            }
+        });
+
+        async function fetchWeather(cityName) {
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                displayWeather(data);
+                setBackgroundBasedOnWeather(data.weather[0].description);
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+        }
+
+        function getWeatherByLocation(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+
+            fetchWeatherByCoordinates(latitude, longitude);
+        }
+
+        function fetchWeatherByCoordinates(latitude, longitude) {
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    displayWeather(data);
+                    setBackgroundBasedOnWeather(data.weather[0].description, data.wind.speed);
+                })
+                .catch(error => {
+                    console.error('Error fetching weather data:', error);
+                });
+        }
+
+        function handleLocationError(error) {
+            console.error('Error getting location:', error);
+        }
+
+        function setBackgroundBasedOnWeather(weatherDescription) {
+            const container = document.querySelector('.container');
+    let backgroundImageUrl = '';
+
+    if (weatherDescription.includes('sunny') || weatherDescription.includes('clear')) {
+        backgroundImageUrl = 'https://media.giphy.com/media/xT0Gqz4x4eLd5gDtaU/giphy.gif';
+    } else if (weatherDescription.includes('cloud')) {
+        backgroundImageUrl = 'https://media.giphy.com/media/yLrLQPkyz7dLYshVhO/giphy.gif';
+    } else if (weatherDescription.includes('rain') || weatherDescription.includes('shower')) {
+        backgroundImageUrl = 'https://media.giphy.com/media/Il9f7ZhytEiI0/giphy.gif';
+    } else if (weatherDescription.includes('haze')) {
+        backgroundImageUrl = 'https://media.wired.co.uk/photos/606dba04751ea43ccd9898b5/16:9/w_2560%2Cc_limit/london-heatwave.jpg';
+    } else {
+       
+        backgroundImageUrl = 'https://img.freepik.com/premium-photo/blue-sky-background-texture-with-white-clouds_29332-520.jpg';
+    }container.style.backgroundImage = `url('${backgroundImageUrl}')`;
+
+        }
+
+        function displayWeather(data) {
+            const weatherDescription = data.weather[0].description;
+    const temperature = (data.main.temp - 273.15).toFixed(2); 
+    const sunriseTime = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+    const sunsetTime = new Date(data.sys.sunset * 1000).toLocaleTimeString();
+    const timezoneOffset = data.timezone / 3600; 
+    const timezoneHours = Math.floor(timezoneOffset);
+    const timezoneMinutes = (timezoneOffset - timezoneHours) * 60;
+    const timezoneFormatted = `${timezoneHours > 0 ? '+' : ''}${timezoneHours}:${timezoneMinutes < 10 ? '0' : ''}${timezoneMinutes.toFixed(0)}`;
+    
+    weatherInfo.innerHTML = `
+        <p>Weather: ${weatherDescription}</p>
+        <p>Temperature: ${temperature}°C</p>
+        <p>Sunrise: ${sunriseTime}</p>
+        <p>Sunset: ${sunsetTime}</p>
+        <p>Timezone: GMT ${timezoneFormatted}</p>
+    `;
+        }
+        const backToHomeButton = document.getElementById('backToHome');
+
+backToHomeButton.addEventListener('click', () => {
+    window.location.href = 'follorme.html'; 
+});
+
+
+function updateSessionTime() {
+        const sessionTimeElement = document.getElementById('sessionTime');
+        let seconds = 0;
+
+        function update() {
+          seconds++;
+          const minutes = Math.floor(seconds / 60);
+          const remainingSeconds = seconds % 60;
+          sessionTimeElement.innerText = `Session Time: ${minutes}m ${remainingSeconds}s`;
+        }
+
+        setInterval(update, 1000);
+      }
+
+      updateSessionTime();
+    </script>
+</body>
+</html>

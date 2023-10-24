@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Location</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; display: flex; height: 100vh; flex-direction: column;}
+        h1 { text-align: center; margin: 20px 0; }
+        .button-container { text-align: center; margin-bottom: 20px; }
+        button { padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        #map { flex-grow: 1; }
+        .session-time {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+    </style>
+</head>
+<body>
+    <h1>Track Your Location</h1>
+    <div class="button-container">
+        <button onclick="showMyLocation()">Show My Location</button>
+    </div>
+    <div id="map"></div>
+    <div class="button-container">
+        <a href="follorme.html"><button>Go to Home Page</button></a>
+    </div>
+    <div class="session-time" id="sessionTime"></div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        let map;
+
+        function initializeMap() {
+            map = L.map('map').setView([0, 0], 2); 
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+        }
+
+        function showMyLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const { latitude, longitude } = position.coords;
+                    map.setView([latitude, longitude], 14); 
+                    L.marker([latitude, longitude]).addTo(map);
+                }, (error) => {
+                    console.error('Error getting location:', error);
+                });
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
+        }
+
+        initializeMap();
+
+        function updateSessionTime() {
+        const sessionTimeElement = document.getElementById('sessionTime');
+        let seconds = 0;
+
+        function update() {
+          seconds++;
+          const minutes = Math.floor(seconds / 60);
+          const remainingSeconds = seconds % 60;
+          sessionTimeElement.innerText = `Session Time: ${minutes}m ${remainingSeconds}s`;
+        }
+
+        setInterval(update, 1000);
+      }
+
+      updateSessionTime();
+
+    </script>
+</body>
+</html>
